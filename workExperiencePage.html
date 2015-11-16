@@ -1,0 +1,453 @@
+<html>
+	<header>
+        <title>Francois Demoullin's webpage</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		
+		<script>
+				(function($) {
+			$(document).ready(function () {
+				/*-------------------- EXPANDABLE PANELS ----------------------*/
+				var panelspeed = 500; //panel animate speed in milliseconds
+				var totalpanels = 15; //total number of collapsible panels
+				var defaultopenpanel = 0; //leave 0 for no panel open
+				var accordian = false; //set panels to behave like an accordian, with one panel only ever open at once      
+		 
+				var panelheight = new Array();
+				var currentpanel = defaultopenpanel;
+				var iconheight = parseInt($('.icon-close-open').css('height'));
+				var highlightopen = true;
+		 
+				//Initialise collapsible panels
+				function panelinit() {
+						for (var i=1; i<=totalpanels; i++) {
+							panelheight[i] = parseInt($('#cp-'+i).find('.expandable-panel-content').css('height'));
+							$('#cp-'+i).find('.expandable-panel-content').css('margin-top', -panelheight[i]);
+							if (defaultopenpanel == i) {
+								$('#cp-'+i).find('.icon-close-open').css('background-position', '0px -'+iconheight+'px');
+								$('#cp-'+i).find('.expandable-panel-content').css('margin-top', 0);
+							}
+						}
+				}
+		 
+				$('.expandable-panel-heading').click(function() {
+					var obj = $(this).next();
+					var objid = parseInt($(this).parent().attr('ID').substr(3,2));
+					currentpanel = objid;
+					if (accordian == true) {
+						resetpanels();
+					}
+		 
+					if (parseInt(obj.css('margin-top')) <= (panelheight[objid]*-1)) {
+						obj.clearQueue();
+						obj.stop();
+						obj.prev().find('.icon-close-open').css('background-position', '0px -'+iconheight+'px');
+						obj.animate({'margin-top':0}, panelspeed);
+						if (highlightopen == true) {
+							$('#cp-'+currentpanel + ' .expandable-panel-heading').addClass('header-active');
+						}
+					} else {
+						obj.clearQueue();
+						obj.stop();
+						obj.prev().find('.icon-close-open').css('background-position', '0px 0px');
+						obj.animate({'margin-top':(panelheight[objid]*-1)}, panelspeed);
+						if (highlightopen == true) {
+							$('#cp-'+currentpanel + ' .expandable-panel-heading').removeClass('header-active');
+						}
+					}
+				});
+		 
+				function resetpanels() {
+					for (var i=1; i<=totalpanels; i++) {
+						if (currentpanel != i) {
+							$('#cp-'+i).find('.icon-close-open').css('background-position', '0px 0px');
+							$('#cp-'+i).find('.expandable-panel-content').animate({'margin-top':-panelheight[i]}, panelspeed);
+							if (highlightopen == true) {
+								$('#cp-'+i + ' .expandable-panel-heading').removeClass('header-active');
+							}
+						}
+					}
+				}
+				
+			   //Uncomment these lines if the expandable panels are not a fixed width and need to resize
+			    /*$( window ).resize(function() {
+				  panelinit();
+				});*/
+		 
+				$(window).load(function() {
+					panelinit();
+				}); //END LOAD
+			}); //END READY
+		})(jQuery);
+		
+		</script>
+        <style>
+			.roundedEdges{
+				border-radius: 6px;
+			}
+			.pointer{
+				cursor: pointer;
+			}
+			h2, p, ol, ul, li {
+				margin:0px;
+				padding:0px;
+				font-size:13px;
+				font-family:Arial, Helvetica, sans-serif;
+			}
+			 
+			#container {
+				width: 80%;
+				margin: auto;
+				margin-top: 40px;
+			}
+			 
+			/* --------- COLLAPSIBLE PANELS ----------*/
+			 
+			.expandable-panel {
+				width:100%;
+				position:relative;
+				min-height:20px !important;
+				overflow:auto;
+				margin-bottom: 20px;
+				border:1px solid #999;
+			}
+			.expandable-panel-heading {
+				width:100%;
+				cursor:pointer;
+				min-height:20px;
+				clear:both;
+				background-color:#E5E5E5;
+				position:relative;
+			}
+			.expandable-panel-heading:hover {
+				color:#666;
+			}
+			.expandable-panel-heading h2 {
+				padding:14px 10px 9px 15px;
+				font-size:18px;
+				line-height:20px;
+			}
+			.expandable-panel-content {
+				padding:0 15px 0 15px;
+				margin-top:-999px;
+			}
+			.expandable-panel-content p {
+				padding:4px 0 6px 0;
+			}
+			.expandable-panel-content p:first-child  {
+				padding-top:10px;
+			}
+			.expandable-panel-content p:last-child {
+				padding-bottom:15px;
+			}
+			.icon-close-open {
+				width:20px;
+				height:20px;
+				position:absolute;
+				background-image:url(icon-close-open.png);
+				right:15px;
+			}
+			.expandable-panel-content img {
+				float:right;
+				padding-left:12px;
+			}
+			.header-active {
+				background-color:#D0D7F3;
+			}
+        </style>
+    </header>
+	<body>
+	<?php include_once("analyticstracking.php") ?>
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="index.html">Francois's webpage</a>
+            </div>
+            <div>
+              <ul class="nav navbar-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="resumePage.html">Resume</a></li>
+                <li class="active"><a href="workExperiencePage.html">Work Experience</a></li>
+                <li><a href="personalProjects.html">Personal Projects</a></li>
+                <li><a href="skiing.html">Skiing</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+		<table border="1" style="margin-left: 5%; width: 90%; margin-top: 5em;">
+		
+		
+		<tr id="ResarchAssistant" style="height: 10em;">
+				<td style="width: 30%;">
+					
+				</td>
+				<td style="text-align: center; width: 70%;">
+					<h1>Research group project at UC Davis under supervision of Dr. Norm Matloff</h1>
+					<h2>September 2015 - current</h2>
+					<div id="container">
+						<div class="expandable-panel roundedEdges" id="cp-10">
+							<div class="expandable-panel-heading roundedEdges">
+								<h2>What is the research about<span class="icon-close-open"></span></h2>
+							 </div>
+							<div class="expandable-panel-content">
+								<p>
+									<p>
+										We are writing an exam submission software that helps students to use their own computers or laptops to write an exam and then submit it remotely via our submission software.
+										Important aspects of the research are:<br/>
+										How to avoid cheating.<br/>
+										How to make submissions possible after the exam time has expired.<br/>
+										How to automatically grade parts of the exam such as coding problems or mathematical results.<br/>
+										How to make sure router issues or a slow network connection does not get in the way of a secure and smooth submission.<br/>
+										The tools used for this project are Python and a Vim text based interface.
+									</p>
+								</p>
+							</div>
+						</div>
+					 
+						<div class="expandable-panel roundedEdges" id="cp-11">
+							<div class="expandable-panel-heading roundedEdges">
+								<h2>What I do<span class="icon-close-open"></span></h2>
+							 </div>
+							<div class="expandable-panel-content">
+								<p>
+									I am in charge of implementing all the Client-Server interactions using Python.
+									Problems I had to deal with in particular were:<br/>
+									Allow multiple students to connect to the server at once.</br>
+									Allow for secure file transfer from the client to the server and vice-versa.</br>
+									Create a secure log in system and make sure students that flood the server are traceable.
+								</p>
+							</div>
+					  </div>
+					 
+					  <div class="expandable-panel roundedEdges" id="cp-12">
+						 <div class="expandable-panel-heading roundedEdges">
+							 <h2>Contact Supervisor<span class="icon-close-open"></span></h2>
+						 </div>
+						 <div class="expandable-panel-content">
+							 <p>
+								Dr. Norm Matloff (Computer Science Professor and researcher at UC Davis)<br/>
+								nsmatloff@ucdavis.edu
+							 </p>
+						 </div>
+					  </div> 
+					</div>
+					
+				</td>
+			</tr>
+			
+			
+			<tr id="Yellify" style="height: 10em;">
+				<td style="width: 30%;">
+					<a href="http://www.squeakshark.com/">
+					<img src="sharkguynew.png" class="pointer" style="width:350px; height: 300px; margin: auto; display: block;"/>
+				</td>
+				<td style="text-align: center; width: 70%;">
+					<h1>Founding member of Squeakshark.com</h1>
+					<p>December 2014 - current</p>
+					<div id="container">
+						<div class="expandable-panel roundedEdges" id="cp-7">
+							<div class="expandable-panel-heading roundedEdges">
+								<h2>What Squeakshark does<span class="icon-close-open"></span></h2>
+							 </div>
+							<div class="expandable-panel-content">
+								<p>
+									<h2 style="font-size: 1.5em;">The idea behind Squeakshark</h2>
+									<p>
+										Emerging musicians with no reputation but great songs find it difficult to sell their songs because of a lack of fans. This is where Squeakshark comes in; our website allows musicians to exchange their music for likes or follows on their social media. This allows new artists to build up a fan base and expand their social media presence.
+									</p>
+									
+									<h2 style="font-size: 1.5em;">Why I like working for Squeakshark</h2>
+									<p>
+										Squeakshark is a common project created by three highly motivated friends who put a lot of effort and free time into the development of Squeakshark.
+										We all work part time and out of pure passion for the project, which is why I like spending every free minute I have on improving the website. 
+									</p>
+									<h2 style="font-size: 1.5em;">Who is behind Squeakshark?</h2>
+									<p>
+										The idea of Squeakshark was developed by Konrad OldMoney, a music producer from Vancouver. His vision of a music platform is being made a reality by two programmers, Maciej and me.
+									</p>
+								</p>
+							</div>
+						</div>
+					 
+						<div class="expandable-panel roundedEdges" id="cp-8">
+							<div class="expandable-panel-heading roundedEdges">
+								<h2>What I do<span class="icon-close-open"></span></h2>
+							 </div>
+							<div class="expandable-panel-content">
+								<p>I am a full-stack developer. I implement all of the front-end using JavaScipt, jQuery, CSS and HTML5. I am familiar wit the back-end which is implemented in PHP.</a></p>
+							</div>
+					  </div>
+					 
+					  <div class="expandable-panel roundedEdges" id="cp-9">
+						 <div class="expandable-panel-heading roundedEdges">
+							 <h2>Contact co-workers<span class="icon-close-open"></span></h2>
+						 </div>
+						 <div class="expandable-panel-content">
+							 <p>
+								Konrad OldMoney (Founder of Squeakshark / Musician)<br/>
+								konradoldmoney@gmail.com
+								<br/><br/>
+								Maciej Mizerski (Physics and optimization programmer at Roblox) <br/>
+								mizerski.maciej@gmail.com
+							 </p>
+						 </div>
+					  </div> 
+					</div>
+					
+				</td>
+			</tr>
+			
+			<tr id="TeachingAssistant" style="height: 10em;">
+				<td style="width: 30%;">
+					
+				</td>
+				<td style="text-align: center; width: 70%;">
+					<h1>Computer Science Teaching Assistant</h1>
+					<h2>September 2014 - January 2015</h2>
+					<div id="container">
+						<div class="expandable-panel roundedEdges" id="cp-13">
+							<div class="expandable-panel-heading roundedEdges">
+								<h2>Class<span class="icon-close-open"></span></h2>
+							 </div>
+							<div class="expandable-panel-content">
+								<p>
+									CPSC101 - Introductory class on Web-Design, UNIX and the basis of programming
+								</p>
+							</div>
+						</div>
+					 
+						<div class="expandable-panel roundedEdges" id="cp-14">
+							<div class="expandable-panel-heading roundedEdges">
+								<h2>What I did<span class="icon-close-open"></span></h2>
+							 </div>
+							<div class="expandable-panel-content">
+								<p>
+									I was in charge of weekly labs and office hours.
+								</p>
+							</div>
+					  </div>
+					 
+					  <div class="expandable-panel roundedEdges" id="cp-15">
+						 <div class="expandable-panel-heading roundedEdges">
+							 <h2>Contact Supervisor<span class="icon-close-open"></span></h2>
+						 </div>
+						 <div class="expandable-panel-content">
+							 <p>
+								Dr. Rachel Pottinger (Computer Science professor and researcher at UBC)<br/>
+								rap@cs.ubc.ca
+							 </p>
+						 </div>
+					  </div> 
+					</div>
+					
+				</td>
+			</tr>
+		
+			<tr id="VDLinternship" style="height: 10em;">
+				<td style="width: 30%;">
+					<a href="http://www.vdl.lu/">
+					<img src="vdlLogo.gif" class="pointer" style="width:200px; height: 200px; margin: auto; display: block;"/>
+				</td>
+				<td style="text-align: center; width: 70%;">
+					<h1>Software Development internship (Java)</h1>
+					<p>August 2014</p>
+					<div id="container">
+						<div class="expandable-panel roundedEdges" id="cp-1">
+							<div class="expandable-panel-heading roundedEdges">
+								<h2>Topic of Internship<span class="icon-close-open"></span></h2>
+							 </div>
+							<div class="expandable-panel-content">
+								<p>
+									<h2 style="font-size: 1.5em;">Design internal recruitment application</h2>
+									<p>
+										Implement an easy to understand internal recruitment software allowing HR to easily display applicants and their documents
+									</p>
+								</p>
+							</div>
+						</div>
+					 
+						<div class="expandable-panel roundedEdges" id="cp-2">
+							<div class="expandable-panel-heading roundedEdges">
+								<h2>Outcome<span class="icon-close-open"></span></h2>
+							 </div>
+							<div class="expandable-panel-content">
+								<p>Robust Java software handling thousands of applications per year</p>
+							</div>
+					  </div>
+					 
+					  <div class="expandable-panel roundedEdges" id="cp-3">
+						 <div class="expandable-panel-heading roundedEdges">
+							 <h2>Contact Supervisor<span class="icon-close-open"></span></h2>
+						 </div>
+						 <div class="expandable-panel-content">
+							 <p>
+								Sylvie Neu (Jr. Software Developer):<br/>
+								sneu@vdl.lu
+							 </p>
+						 </div>
+					  </div> 
+					</div>
+					
+				</td>
+			</tr>
+		
+			<tr id="BGLinternship" style="height: 10em;">
+				<td style="width: 30%;">
+					<a href="http://www.bgl.lu/">
+					<img src="BNPPariBasImage.png" class="pointer" style="width:331.5px; height: 102px; margin: auto; display: block;"/>
+				</td>
+				<td style="text-align: center; width: 70%;">
+					<h1>Software Architecture internship</h1>
+					<p>July 2014</p>
+					<div id="container">
+						<div class="expandable-panel roundedEdges" id="cp-4">
+							<div class="expandable-panel-heading roundedEdges">
+								<h2>Topic of Internship<span class="icon-close-open"></span></h2>
+							 </div>
+							<div class="expandable-panel-content">
+								<p>
+									<h2 style="font-size: 1.5em;">Centralized log management solution</h2>
+									<p>
+										Gather all log files from diverse applications across the bank in one single database while guaranteeing the high security standards of the banking sector
+									</p>
+								</p>
+							</div>
+						</div>
+					 
+						<div class="expandable-panel roundedEdges" id="cp-5">
+							<div class="expandable-panel-heading roundedEdges">
+								<h2>Outcome and solution recommendation<span class="icon-close-open"></span></h2>
+							 </div>
+							<div class="expandable-panel-content">
+								<h2 style="font-size: 1.5em;"> Up to 80% reduction of bug detection time and a significant increase in data safety</h2>
+								<p>
+									Storage of a log files in one single database guarantees ease of access to all log files. Searching algorithms and analystics tools reduce searchtime for bugs and increase the productivity of all software applcations 
+								</p>
+								<h2 style="font-size: 1.5em;"> ElasticSearch and Kibana</h2>
+								<p>
+									I recommended ElasticSearch as a search engine and and the analytics tool Kibana because both provide a free and powerful way of analysing centralized log files
+								</p>
+							</div>
+					  </div>
+					 
+					  <div class="expandable-panel roundedEdges" id="cp-6">
+						 <div class="expandable-panel-heading roundedEdges">
+							 <h2>Contact Supervisor<span class="icon-close-open"></span></h2>
+						 </div>
+						 <div class="expandable-panel-content">
+							 <p>
+								Mathieu Dietrich (Sr. Software Architect):<br/>
+								mathieu.dietrich@bgl.lu
+							 </p>
+						 </div>
+					  </div> 
+					</div>
+					
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

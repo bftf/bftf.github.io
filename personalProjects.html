@@ -1,0 +1,340 @@
+<html>
+	<header>
+        <title>Francois Demoullin's webpage</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		
+		<script>
+				(function($) {
+			$(document).ready(function () {
+				/*-------------------- EXPANDABLE PANELS ----------------------*/
+				var panelspeed = 500; //panel animate speed in milliseconds
+				var totalpanels = 9; //total number of collapsible panels
+				var defaultopenpanel = 0; //leave 0 for no panel open
+				var accordian = false; //set panels to behave like an accordian, with one panel only ever open at once      
+		 
+				var panelheight = new Array();
+				var currentpanel = defaultopenpanel;
+				var iconheight = parseInt($('.icon-close-open').css('height'));
+				var highlightopen = true;
+		 
+				//Initialise collapsible panels
+				function panelinit() {
+						for (var i=1; i<=totalpanels; i++) {
+							panelheight[i] = parseInt($('#cp-'+i).find('.expandable-panel-content').css('height'));
+							$('#cp-'+i).find('.expandable-panel-content').css('margin-top', -panelheight[i]);
+							if (defaultopenpanel == i) {
+								$('#cp-'+i).find('.icon-close-open').css('background-position', '0px -'+iconheight+'px');
+								$('#cp-'+i).find('.expandable-panel-content').css('margin-top', 0);
+							}
+						}
+				}
+		 
+				$('.expandable-panel-heading').click(function() {
+					var obj = $(this).next();
+					var objid = parseInt($(this).parent().attr('ID').substr(3,2));
+					currentpanel = objid;
+					if (accordian == true) {
+						resetpanels();
+					}
+		 
+					if (parseInt(obj.css('margin-top')) <= (panelheight[objid]*-1)) {
+						obj.clearQueue();
+						obj.stop();
+						obj.prev().find('.icon-close-open').css('background-position', '0px -'+iconheight+'px');
+						obj.animate({'margin-top':0}, panelspeed);
+						if (highlightopen == true) {
+							$('#cp-'+currentpanel + ' .expandable-panel-heading').addClass('header-active');
+						}
+					} else {
+						obj.clearQueue();
+						obj.stop();
+						obj.prev().find('.icon-close-open').css('background-position', '0px 0px');
+						obj.animate({'margin-top':(panelheight[objid]*-1)}, panelspeed);
+						if (highlightopen == true) {
+							$('#cp-'+currentpanel + ' .expandable-panel-heading').removeClass('header-active');
+						}
+					}
+				});
+		 
+				function resetpanels() {
+					for (var i=1; i<=totalpanels; i++) {
+						if (currentpanel != i) {
+							$('#cp-'+i).find('.icon-close-open').css('background-position', '0px 0px');
+							$('#cp-'+i).find('.expandable-panel-content').animate({'margin-top':-panelheight[i]}, panelspeed);
+							if (highlightopen == true) {
+								$('#cp-'+i + ' .expandable-panel-heading').removeClass('header-active');
+							}
+						}
+					}
+				}
+				
+			   //Uncomment these lines if the expandable panels are not a fixed width and need to resize
+			    /*$( window ).resize(function() {
+				  panelinit();
+				});*/
+		 
+				$(window).load(function() {
+					panelinit();
+				}); //END LOAD
+			}); //END READY
+		})(jQuery);
+		
+		</script>
+        <style>
+			.roundedEdges{
+				border-radius: 6px;
+			}
+			.pointer{
+				cursor: pointer;
+			}
+			h2, p, ol, ul, li {
+				margin:0px;
+				padding:0px;
+				font-size:13px;
+				font-family:Arial, Helvetica, sans-serif;
+			}
+			 
+			#container {
+				width: 90%;
+				margin-left: 5%;
+				margin-top: 40px;
+			}
+			 
+			/* --------- COLLAPSIBLE PANELS ----------*/
+			 
+			.expandable-panel {
+				width:100%;
+				position:relative;
+				min-height:20px !important;
+				overflow:auto;
+				margin-bottom: 20px;
+				border:1px solid #999;
+			}
+			.expandable-panel-heading {
+				width:100%;
+				cursor:pointer;
+				min-height:20px;
+				clear:both;
+				background-color:#E5E5E5;
+				position:relative;
+			}
+			.expandable-panel-heading:hover {
+				color:#666;
+			}
+			.expandable-panel-heading h2 {
+				padding:14px 10px 9px 15px;
+				font-size:18px;
+				line-height:20px;
+			}
+			.expandable-panel-content {
+				padding:0 15px 0 15px;
+				margin-top:-999px;
+			}
+			.expandable-panel-content p {
+				padding:4px 0 6px 0;
+			}
+			.expandable-panel-content p:first-child  {
+				padding-top:10px;
+			}
+			.expandable-panel-content p:last-child {
+				padding-bottom:15px;
+			}
+			.icon-close-open {
+				width:20px;
+				height:20px;
+				position:absolute;
+				background-image:url(icon-close-open.png);
+				right:15px;
+			}
+			.expandable-panel-content img {
+				float:right;
+				padding-left:12px;
+			}
+			.header-active {
+				background-color:#D0D7F3;
+			}
+        </style>
+    </header>
+	<body>
+	<?php include_once("analyticstracking.php") ?>
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="index.html">Francois's webpage</a>
+            </div>
+            <div>
+              <ul class="nav navbar-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="resumePage.html">Resume</a></li>
+                <li><a href="workExperiencePage.html">Work Experience</a></li>
+                <li class="active"><a href="#">Personal Projects</a></li>
+                <li><a href="#">Skiing</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+		
+		<table border="1" style="margin-left: 5%; width: 90%; margin-top: 5em;">
+		<tr id="ParticleSystemCPU" style="height: 10em;">
+				<td style="width: 100%;">
+					<h1 style="text-align: center;" >Particle System on the CPU using OpenGL, GLSL and C++</h1>
+					<h2 style="text-align: center;"><a style="cursor: pointer;">https://bitbucket.org/FrancoisDemoullin</a></h2>
+					<div id="container">
+						<div class="expandable-panel roundedEdges" id="cp-1">
+							<div class="expandable-panel-heading roundedEdges">
+								<h2>How the particles are stored and how that effects blending<span class="icon-close-open"></span></h2>
+							 </div>
+							<div class="expandable-panel-content">
+								<p>
+									All particle locations are stored in a vector on the Heap.
+									This has the advantage that at each frame the array can be easily sorted, which however is rather slow and makes the frame rate drop.
+									I opted for additive blending in this project because additive blending makes sorting redundant giving my program a boost in performance and allowing for a higher number of particles to be rendered.
+								</p>
+							</div>
+						</div>
+						
+						<div class="expandable-panel roundedEdges" id="cp-2">
+							<div class="expandable-panel-heading roundedEdges">
+								<h2>How the particles are generated in the FragmentShader<span class="icon-close-open"></span></h2>
+							 </div>
+							<div class="expandable-panel-content">
+								<p>
+									The main program only keeps track of a single location for each particle. However one particle is much more than just a point sprite: it has a randomly chosen color and a randomly generated radius.
+									Furthermore I wanted all particles to fade out towards the outside. This means that close to the center of the particle the color should be more vivid than at the particle's edges.
+									This effect is achieved in the Fragment shader.
+								</p>
+							</div>
+						</div>
+						
+						<div class="expandable-panel roundedEdges" id="cp-3">
+							<div class="expandable-panel-heading roundedEdges">
+								<h2>Performance limitations<span class="icon-close-open"></span></h2>
+							 </div>
+							<div class="expandable-panel-content">
+								<p>
+									The performance of this implementation is relatively limited. After more than 0.5million particles, my program starts lagging and the frame rate drops below 10 fps.
+									The bottleneck definitely is the big array that holds all the particles. It needs to be traversed at every frame and every position needs to be updated.
+									This rather inefficient.
+									As a workaround for this I started implementing the particle system on the GPU. See the project below. 
+								</p>
+							</div>
+						</div>
+						
+						<div class="expandable-panel roundedEdges" id="cp-4">
+							<div class="expandable-panel-heading roundedEdges">
+								<h2>Source code and library dependencies<span class="icon-close-open"></span></h2>
+							 </div>
+							<div class="expandable-panel-content">
+								<p>
+									The performance of this implementation is relatively limited. After more than 0.5million particles, my program starts lagging and the frame rate drops below 10 fps.
+									The bottleneck definitely is the big array that holds all the particles. It needs to be traversed at every frame and every position needs to be updated.
+									This rather inefficient.
+									As a workaround for this I started implementing the particle system on the GPU. See the project below. 
+								</p>
+							</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+			
+			<tr id="ParticleSystemGPU" style="height: 10em;">
+				<td style="width: 100%;">
+					<h1 style="text-align: center;">Particle System on the GPU using OpenGL, GLSL and C++</h1>
+					<h2 style="text-align: center;"><a style="cursor: pointer;">https://bitbucket.org/FrancoisDemoullin</a></h2>
+					<div id="container">
+						<div class="expandable-panel roundedEdges" id="cp-5">
+							<div class="expandable-panel-heading roundedEdges">
+								<h2>How the particles are stored<span class="icon-close-open"></span></h2>
+							 </div>
+							<div class="expandable-panel-content">
+								<p>
+									All particles are stored in textures. That is unconventional but it brings a massive boost in performance over storage of particles on the CPU.
+									Upon creation, 2 position textures and 2 velocity textures are created. Each TextureCoordinate represents one particle. 
+									
+									At every frame, two render passes are done, the first render pass updates the velocity of the particle based on previous the previous velocity and based on simulted physics. 
+									The second render pass uses the newly updated velocity to update position.
+									
+									The reason there are 2 textures is that at every frame, one set of textures is used to render the particles, the other set of textures is updated.
+									
+									This effectively stores all information about the particles on the GPU instead of the CPU. In addition, all particles are updated in the FragmentShader on the GPU using the parallel nature of the GPU to gain performance.
+								</p>
+							</div>
+						</div>
+						
+						<div class="expandable-panel roundedEdges" id="cp-6">
+							<div class="expandable-panel-heading roundedEdges">
+								<h2>Why not OpenCL<span class="icon-close-open"></span></h2>
+							 </div>
+							<div class="expandable-panel-content">
+								<p>
+									While OpenCl is intended to do regular computation on the GPU it made no sense to use OpenCL for my project.
+									The context switch from OpenCL back to OpenGL takes approximately half a second. This context switch is necessary for rendering every single frame because OpenCl does not allow rendering operations.
+									This effectively reduces the framerate to 2 frames per second, which of course does not allow for a smooth animation.
+								</p>
+							</div>
+						</div>
+						
+						<div class="expandable-panel roundedEdges" id="cp-7">
+							<div class="expandable-panel-heading roundedEdges">
+								<h2>Future plans and termination of this project<span class="icon-close-open"></span></h2>
+							 </div>
+							<div class="expandable-panel-content">
+								<p>
+									I have not yet had the time to finished the particle system. While I am really close I am currently trying to refactor my code and put together a demo. 
+									Unfortunately, a big course load at school got in the way of the completion of this project although I keep  working on it on quiet Week-Ends and sometimes after school.
+									This particle system means a lot to me, and completing it will be an amazing feeling which I am looking forward to.
+								</p>
+							</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+			
+			<tr id="TweetMapRubyOnRails" style="height: 10em;">
+				<td style="width: 100%;">
+					<h1 style="text-align: center;">Tweet Plot Web Application using Ruby on Rails, Google Maps API and the Twitter API</h1>
+					<h2 style="text-align: center;">The application: <a style="cursor: pointer;">http://tweet-maps.herokuapp.com/</a></h2>
+					<h2 style="text-align: center;">The code: <a style="cursor: pointer;">https://github.com/bftf/Tweet_Map_public</a></h2>
+					<div id="container">
+						<div class="expandable-panel roundedEdges" id="cp-8">
+							<div class="expandable-panel-heading roundedEdges">
+								<h2>How it works<span class="icon-close-open"></span></h2>
+							 </div>
+							<div class="expandable-panel-content">
+								<p>
+									Sign up with your own Twitter account and see where you tweeted from. Out web application plots all your tweets with geo tagging onto a Google Map.
+									You can also see tweets from any other Twitter account that has geo tagging turned on.
+									Another feature is search by location. Search for Paris, France and all tweets from Paris will be plotted on the Map
+								</p>
+							</div>
+						</div>
+						
+						<div class="expandable-panel roundedEdges" id="cp-9">
+							<div class="expandable-panel-heading roundedEdges">
+								<h2>Screen Shots <span class="icon-close-open"></span></h2>
+							 </div>
+							<div class="expandable-panel-content">
+								<table>
+									<tr>
+										<td><img style="padding-top: 1em; width: 900px; height: 520px;" src="TweetMap0.png"></img></td>
+									</tr>
+									<tr>
+										<td><img style="padding-top: 1em; width: 900px; height: 520px;" src="TweetMap1.png"></img></td>
+									</tr>
+									<tr>
+										<td><img style="padding-top: 1em; width: 900px; height: 520px;" src="TweetMap2.png"></img></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+			
+		</table>
+	</body>
+</html>

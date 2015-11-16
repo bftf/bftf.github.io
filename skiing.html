@@ -1,0 +1,131 @@
+<html>
+	<header>
+        <title>Francois Demoullin's webpage</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		
+		<script>
+		
+		</script>
+        <style>
+			.roundedEdges{
+				border-radius: 6px;
+			}
+			.pointer{
+				cursor: pointer;
+			}
+			h2, p, ol, ul, li {
+				margin:0px;
+				padding:0px;
+				font-size:13px;
+				font-family:Arial, Helvetica, sans-serif;
+			}
+			 
+			#container {
+				width: 90%;
+				margin-left: 5%;
+				margin-top: 40px;
+			}
+			 
+			/* --------- COLLAPSIBLE PANELS ----------*/
+			 
+			.expandable-panel {
+				width:100%;
+				position:relative;
+				min-height:20px !important;
+				overflow:auto;
+				margin-bottom: 20px;
+				border:1px solid #999;
+			}
+			.expandable-panel-heading {
+				width:100%;
+				cursor:pointer;
+				min-height:20px;
+				clear:both;
+				background-color:#E5E5E5;
+				position:relative;
+			}
+			.expandable-panel-heading:hover {
+				color:#666;
+			}
+			.expandable-panel-heading h2 {
+				padding:14px 10px 9px 15px;
+				font-size:18px;
+				line-height:20px;
+			}
+			.expandable-panel-content {
+				padding:0 15px 0 15px;
+				margin-top:-999px;
+			}
+			.expandable-panel-content p {
+				padding:4px 0 6px 0;
+			}
+			.expandable-panel-content p:first-child  {
+				padding-top:10px;
+			}
+			.expandable-panel-content p:last-child {
+				padding-bottom:15px;
+			}
+			.icon-close-open {
+				width:20px;
+				height:20px;
+				position:absolute;
+				background-image:url(icon-close-open.png);
+				right:15px;
+			}
+			.expandable-panel-content img {
+				float:right;
+				padding-left:12px;
+			}
+			.header-active {
+				background-color:#D0D7F3;
+			}
+        </style>
+    </header>
+	<body>
+	<?php include_once("analyticstracking.php") ?>
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="index.html">Francois's webpage</a>
+            </div>
+            <div>
+              <ul class="nav navbar-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="resumePage.html">Resume</a></li>
+                <li><a href="workExperiencePage.html">Work Experience</a></li>
+                <li><a href="personalProjects.html">Personal Projects</a></li>
+                <li class="active"><a href="#">Skiing</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+		
+		<table border="1" style="margin-left: 5%; width: 90%; margin-top: 5em;">
+		
+			<tr id="SkiingIntro" style="height: 10em;">
+				<td style="width: 100%;">
+					<h1 style="text-align: center;">Skiing is what I am truly passionate about!</h1>
+					<h2 style="text-align: center;">These are some of my favourite photos from last year's season, stay tuned for this year's season, it will be a rad one again.</h2>
+				</td>
+			</tr>
+			
+			<tr id="PowderGnorm" ><td style="text-align: center;">
+				<img src="skiing0.jpg" style="width: 720px; height: 550px; padding-top: 2em; padding-bottom: 0.5em;"></img>
+			</td></tr>
+			
+			<tr id="PowderGnorm" ><td style="text-align: center;">
+				<img src="touring0.jpg" style="padding-top: 2em; padding-bottom: 0.5em;"></img>
+			</td></tr>
+			
+			<tr id="PowderGnorm" ><td style="text-align: center;">
+				<img src="gnom.jpg" style="padding-top: 2em; padding-bottom: 0.5em;"></img>
+			</td></tr>
+			
+			
+		</table>
+	</body>
+</html>
