@@ -12,7 +12,7 @@
 			$(document).ready(function () {
 				/*-------------------- EXPANDABLE PANELS ----------------------*/
 				var panelspeed = 500; //panel animate speed in milliseconds
-				var totalpanels = 9; //total number of collapsible panels
+				var totalpanels = 13; //total number of collapsible panels
 				var defaultopenpanel = 0; //leave 0 for no panel open
 				var accordian = false; //set panels to behave like an accordian, with one panel only ever open at once      
 		 
@@ -178,11 +178,75 @@
           </div>
         </nav>
 		
-		<table border="1" style="margin-left: 5%; width: 90%; margin-top: 5em;">
-		<tr id="ParticleSystemCPU" style="height: 10em;">
+		<table border="1" style="margin-left: 5%; width: 90%; margin-top: 5em; margin-bottom: 1em;">
+			
+			<tr id="Volume Renderer / Volumetric Ray Caster" style="height: 10em; margin-bottom: 2em;">
+				<td style="width: 100%;">
+					<h1 style="text-align: center;" >Ray Caster using OpenGL, GLSL and C++</h1>
+					<h2 style="text-align: center;">A short presentation with stunning images can be found at <a style="cursor: pointer;" href="http://1drv.ms/1OZrDQF">http://1drv.ms/1OZrDQF</a></h2>
+					<h2 style="text-align: center;">The source code can be found at: <a style="cursor: pointer;" href="https://bitbucket.org/FrancoisDemoullin/volumerenderer">https://bitbucket.org/FrancoisDemoullin/volumerenderer</a></h2>
+					<div id="container">
+						<div class="expandable-panel roundedEdges" id="cp-10">
+							<div class="expandable-panel-heading roundedEdges">
+								<h2>Tri-linear vs Tri-cubic interpolation<span class="icon-close-open"></span></h2>
+							 </div>
+							<div class="expandable-panel-content">
+								<p>
+								
+									Tri-linear interpolation estimates the value within each voxel along with the gradient at that point linearly based on surrounding data points. ​
+									
+									Tri-cubic interpolation is a more advanced method to interpolate values within a voxel. Per voxel 64 tensor products are produced in a pre-processing step. Using Bernstein polynomials both the gradient and the value are smoothly interpolated
+								
+								</p>
+							</div>
+						</div>
+						
+						<div class="expandable-panel roundedEdges" id="cp-11">
+							<div class="expandable-panel-heading roundedEdges">
+								<h2>CVM and perspective changes<span class="icon-close-open"></span></h2>
+							 </div>
+							<div class="expandable-panel-content">
+								<p>
+									For the Volume Renderer I have implented a full Camera Viewing Model (CVM). This is not standard for volume rendering as often times Volume Renderers resort to paralell projections along the axis. 
+									The CVM allows the user to change the perspective and look at the image from different viewing angles. 
+									The From Point is fixed at (0, 0, 0) because the imgae is produced around the origin. 
+								</p>
+							</div>
+						</div>
+						
+						<div class="expandable-panel roundedEdges" id="cp-12">
+							<div class="expandable-panel-heading roundedEdges">
+								<h2>Performance limitations + future work<span class="icon-close-open"></span></h2>
+							 </div>
+							<div class="expandable-panel-content">
+								<p>
+									I want Real time!​
+									The implementation is done entirely on the CPU. I could drastically improve the performance by using OpenGL Compute shaders or CUDA. I like Real-time, a lot. So ultimately that will be the goal.​
+									Color and Opacity mapping editor​
+									I want any user to specify what opacity function and what color mapping they see appropriate for the data set. The most fun I had with this project was tweaking to mappings to produce the best images. However that was all done in code and I would like for non programmers to be able to easily come up with their own mappings
+								</p>
+							</div>
+						</div>
+						
+						<div class="expandable-panel roundedEdges" id="cp-13">
+							<div class="expandable-panel-heading roundedEdges">
+								<h2>Source code and library dependencies<span class="icon-close-open"></span></h2>
+							 </div>
+							<div class="expandable-panel-content">
+								<p>
+									The source code is located at https://bitbucket.org/FrancoisDemoullin.
+									My program requires the GLEW and the OpenGL libraries to be linked to it for compilation.
+								</p>
+							</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+			
+			<tr id="ParticleSystemCPU" style="height: 10em;">
 				<td style="width: 100%;">
 					<h1 style="text-align: center;" >Particle System on the CPU using OpenGL, GLSL and C++</h1>
-					<h2 style="text-align: center;"><a style="cursor: pointer;">https://bitbucket.org/FrancoisDemoullin</a></h2>
+					<h2 style="text-align: center;">The source code can be found at: <a style="cursor: pointer;" href="https://bitbucket.org/FrancoisDemoullin">https://bitbucket.org/FrancoisDemoullin</a></h2>
 					<div id="container">
 						<div class="expandable-panel roundedEdges" id="cp-1">
 							<div class="expandable-panel-heading roundedEdges">
@@ -242,7 +306,7 @@
 			<tr id="ParticleSystemGPU" style="height: 10em;">
 				<td style="width: 100%;">
 					<h1 style="text-align: center;">Particle System on the GPU using OpenGL, GLSL and C++</h1>
-					<h2 style="text-align: center;"><a style="cursor: pointer;">https://bitbucket.org/FrancoisDemoullin</a></h2>
+					<h2 style="text-align: center;">The source code can be found at: <a style="cursor: pointer;" href="https://bitbucket.org/FrancoisDemoullin">https://bitbucket.org/FrancoisDemoullin</a></h2>
 					<div id="container">
 						<div class="expandable-panel roundedEdges" id="cp-5">
 							<div class="expandable-panel-heading roundedEdges">
@@ -295,8 +359,8 @@
 			<tr id="TweetMapRubyOnRails" style="height: 10em;">
 				<td style="width: 100%;">
 					<h1 style="text-align: center;">Tweet Plot Web Application using Ruby on Rails, Google Maps API and the Twitter API</h1>
-					<h2 style="text-align: center;">The application: <a style="cursor: pointer;">http://tweet-maps.herokuapp.com/</a></h2>
-					<h2 style="text-align: center;">The code: <a style="cursor: pointer;">https://github.com/bftf/Tweet_Map_public</a></h2>
+					<h2 style="text-align: center;">The deployed application: <a style="cursor: pointer;" href="http://tweet-maps.herokuapp.com/">http://tweet-maps.herokuapp.com/</a></h2>
+					<h2 style="text-align: center;">The source code can be found at: <a style="cursor: pointer;" href="https://github.com/bftf/Tweet_Map_public">https://github.com/bftf/Tweet_Map_public</a></h2>
 					<div id="container">
 						<div class="expandable-panel roundedEdges" id="cp-8">
 							<div class="expandable-panel-heading roundedEdges">
@@ -316,17 +380,8 @@
 								<h2>Screen Shots <span class="icon-close-open"></span></h2>
 							 </div>
 							<div class="expandable-panel-content">
-								<table>
-									<tr>
-										<td><img style="padding-top: 1em; width: 900px; height: 520px;" src="TweetMap0.png"></img></td>
-									</tr>
-									<tr>
-										<td><img style="padding-top: 1em; width: 900px; height: 520px;" src="TweetMap1.png"></img></td>
-									</tr>
-									<tr>
-										<td><img style="padding-top: 1em; width: 900px; height: 520px;" src="TweetMap2.png"></img></td>
-									</tr>
-								</table>
+								I am sorry, Screen shots are currently not available. 
+								Please refer to the application for actual images of how it works. 
 							</div>
 						</div>
 					</div>
