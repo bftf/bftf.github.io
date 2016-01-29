@@ -12,7 +12,7 @@
 			$(document).ready(function () {
 				/*-------------------- EXPANDABLE PANELS ----------------------*/
 				var panelspeed = 500; //panel animate speed in milliseconds
-				var totalpanels = 15; //total number of collapsible panels
+				var totalpanels = 18; //total number of collapsible panels
 				var defaultopenpanel = 0; //leave 0 for no panel open
 				var accordian = false; //set panels to behave like an accordian, with one panel only ever open at once      
 		 
@@ -178,9 +178,67 @@
           </div>
         </nav>
 		<table border="1" style="margin-left: 5%; width: 90%; margin-top: 5em;">
+			
+			<tr id="ResarchAssistant" style="height: 10em;">
+				<td style="width: 30%;">
+					
+				</td>
+				<td style="text-align: center; width: 70%;">
+					<h1>Research assistant at the UC Davis GPGPU lab under supervision of Dr. John Owens</h1>
+					<h2>September 2015 - current</h2>
+					<div id="container">
+						<div class="expandable-panel roundedEdges" id="cp-16">
+							<div class="expandable-panel-heading roundedEdges">
+								<h2>Who am I working with and what are we working on<span class="icon-close-open"></span></h2>
+							 </div>
+							<div class="expandable-panel-content">
+								<p>
+									<p>
+										I am working with Kerry Seitz, PhD candidate in the GPGPU lab.</br>
+										Kerry's website with previous projects and some more information is located at <a href="http://csiflabs.cs.ucdavis.edu/~kaseitz/">http://csiflabs.cs.ucdavis.edu/~kaseitz/</a></br>
+										
+										Together with Tim Fooley and Anjul Patney from NVIDIA we work on the Metashader project.</br>
+										The idea is to abstact from shading languages such as HLSL and GLSL using a meta-programming application which is capapble of producing shaders in may languages without programmers knowing the specifics of the shading language.</br>
+										
+									</p>
+								</p>
+							</div>
+						</div>
+					 
+						<div class="expandable-panel roundedEdges" id="cp-17">
+							<div class="expandable-panel-heading roundedEdges">
+								<h2>What I do<span class="icon-close-open"></span></h2>
+							 </div>
+							<div class="expandable-panel-content">
+								<p>
+									I am currently integrating the shaders the meta-shading application produces into my personal projects.</br>
+									Using Lua, I define pipelines in the metashader and I produce the GLSL output which then is plugged into my Particle System and my Volume Renderer.</br>
+									Thus far, I prefer the construct of a pipeline over the tedious work which is needed to write GLSL shaders.</br>
+									Furthermore I get insights into the world of research and I get to play around on my personal projects all while producing valuable feedback to Kerry's team and the project. 
+							
+								</p>
+							</div>
+					  </div>
+					 
+					  <div class="expandable-panel roundedEdges" id="cp-18">
+						 <div class="expandable-panel-heading roundedEdges">
+							 <h2>Contact Supervisor<span class="icon-close-open"></span></h2>
+						 </div>
+						 <div class="expandable-panel-content">
+							 <p>
+								Kerry A. Seitz</br>
+								kaseitz@ucdavis.edu</br>
+								Dr. John Owens<br/>
+								jowens@ece.ucdavis.edu
+							 </p>
+						 </div>
+					  </div> 
+					</div>
+					
+				</td>
+			</tr>
 		
-		
-		<tr id="ResarchAssistant" style="height: 10em;">
+			<tr id="ResarchAssistant" style="height: 10em;">
 				<td style="width: 30%;">
 					
 				</td>
